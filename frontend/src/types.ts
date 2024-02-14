@@ -1,26 +1,26 @@
 export interface Montatura {
-    Modello: string
-    Brand: string
-    Prezzo: number
-    Versione: string
-    Calibro: string
-    Ponte: string
-    Aste: string
-    Materiale: string
-    Colore: string
-    Immagine: string
-    NewModello: string
+    Modello: string | null
+    Brand: string | null
+    Prezzo: number | null
+    Versione: string | null
+    Calibro: string | null
+    Ponte: string | null
+    Aste: string | null
+    Materiale: string | null
+    Colore: string | null
+    Immagine: string | null
+    NewModello: string | null
 }
 
 export interface LAC {
-    Modello: string
-    Brand: string
-    Prezzo: number
-    Durata: string
-    Fascia: string
-    Focale: string
-    NewModello: string
-    Categoria: string
+    Modello: string | null
+    Brand: string | null
+    Prezzo: number | null
+    Durata: string | null
+    Fascia: string | null
+    Focale: string | null
+    NewModello: string | null
+    Categoria: string | null
 }
 
 export interface User {

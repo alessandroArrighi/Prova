@@ -296,10 +296,6 @@ button {
         display: block;
       }
     }
-    .error {
-      color: red;
-      font-size: large;
-    }
   }
   button {
     margin: 5px;
@@ -338,10 +334,6 @@ button {
       input {
         margin: $spacing-small;
       }  
-    }
-    .error {
-      color: red;
-      font-size: large;
     }
   }
 }

@@ -40,7 +40,16 @@ export default defineComponent({
                     dati: this.modificaMontatura
                 });
                 if (response.status === 200) {
-                    this.initMontatura(this.modificaMontatura)
+                    this.modificaMontatura.Modello = null;
+                    this.modificaMontatura.Brand = null;
+                    this.modificaMontatura.Prezzo = null;
+                    this.modificaMontatura.Versione = null;
+                    this.modificaMontatura.Calibro = null;
+                    this.modificaMontatura.Ponte = null;
+                    this.modificaMontatura.Aste = null;
+                    this.modificaMontatura.Materiale = null;
+                    this.modificaMontatura.Colore = null;
+                    this.modificaMontatura.Immagine = null;  
                     this.errorMon = ""
                 }
             } catch (error) {
@@ -54,7 +63,12 @@ export default defineComponent({
                     dati: this.modificaLAC
                 });
                 if (response.status === 200) {
-                    this.initLAC(this.modificaLAC)
+                    this.modificaLAC.Modello = null;
+                    this.modificaLAC.Brand = null;
+                    this.modificaLAC.Prezzo = null;
+                    this.modificaLAC.Durata = null;
+                    this.modificaLAC.Fascia = null;
+                    this.modificaLAC.Focale = null;
                     this.errorLAC = ""
                 }
             } catch (error) {
