@@ -1,12 +1,13 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import axios from "axios";
-import { Ordine } from "../types";
+import { Ordine, User } from "../types";
 import { addToOrder, STORAGE_NAME } from "../utils/localStorage"
 
 export default defineComponent({
   props: {
-    ordine: Array as PropType<Ordine[]>
+    ordine: Array as PropType<Ordine[]>,
+    user: {} as PropType<User>
   },
   data() {
     return {
@@ -95,6 +96,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <h1>{{ user }}</h1>
   <div class="flex-container-filtri">
     <div class="flex-item">
       <button @click="mostraFiltri = !mostraFiltri">Applica Filtri</button>
