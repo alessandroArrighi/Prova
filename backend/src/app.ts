@@ -2,7 +2,6 @@ import express, { Express } from 'express'
 import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 import framesRouter from "./routes/products-router"
-import appointmentsRouter from "./routes/appointments-router"
 import ordersRouter from "./routes/orders-router"
 import usersRouter from "./routes/users-router"
 import authRouter from "./routes/auth-router"
@@ -16,7 +15,6 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 
 app.use(framesRouter)
-app.use(appointmentsRouter)
 app.use(ordersRouter)
 app.use(usersRouter)
 app.use(authRouter)

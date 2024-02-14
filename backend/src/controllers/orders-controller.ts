@@ -69,19 +69,6 @@ export async function ordersFromUser(req: Request, res: Response) {
     )
 }
 
-const selecProdotto = async (query: string) => {
-    const res = await connection
-                .promise()
-                .query(
-                    query,
-                    []
-                )
-                .then(([rows, fields]) => {
-                    return rows
-                })
-    return (res as any)
-}
-
 export async function createOrder(req: Request, res: Response) {
     if(!await loggedIn(req, res)) return
 
@@ -111,4 +98,17 @@ export async function createOrder(req: Request, res: Response) {
         }
     )
     res.send("Ordine creato")
+}
+
+const selecProdotto = async (query: string) => {
+    const res = await connection
+                .promise()
+                .query(
+                    query,
+                    []
+                )
+                .then(([rows, fields]) => {
+                    return rows
+                })
+    return (res as any)
 }

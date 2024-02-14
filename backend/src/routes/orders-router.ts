@@ -3,9 +3,9 @@ import * as ordersController from "../controllers/orders-controller"
 
 const router: Router = Router()
 
-router.post("/api/ordini/idordine", ordersController.ordersFromID)      //fatto
-router.post("/api/ordini/crea/ordine", ordersController.createOrder)    //fatto
-router.post("/api/ordini/user", ordersController.ordersFromUser)        // fatto
-router.post("/api/ordini/getordine", ordersController.getOrder)         //fatto
+router.post("/api/ordini/idordine", ordersController.ordersFromID)
+router.post("/api/ordini/crea/ordine", ordersController.createOrder)
+router.post("/api/ordini/user", ordersController.ordersFromUser)
+router.post("/api/ordini/getordine", ordersController.getOrder)
 
 export default router
