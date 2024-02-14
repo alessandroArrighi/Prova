@@ -60,6 +60,10 @@ export async function modifyFrame(req: Request, res: Response) {
         [Modello],
         function(err, results, fields) {
             const result = (results as any)[0]
+            if(!result) {
+                res.status(400).send("Errore")
+                return
+            }
             connection.execute(
                 "UPDATE Montature SET Modello = ?, Brand = ?, Prezzo = ?, Versione = ?, Calibro = ?, Ponte = ?, Aste = ?, Materiale = ?, Colore = ?, Immagine = ? WHERE Modello = ?",
                 [
@@ -115,6 +119,10 @@ export async function modifyLens(req: Request, res: Response) {
         [Modello],
         function(err, results, fields) {
             const result = (results as any)[0]
+            if(!result) {
+                res.status(400).send("Errore")
+                return
+            }
             connection.execute(
                 "UPDATE Lenti SET Modello = ?, Brand = ?, Prezzo = ?, Versione = ?, Antiriflesso = ?, Sfericità = ?, Focale = ? WHERE Modello = ?",
                 [
@@ -160,6 +168,10 @@ export async function modifyLAC(req: Request, res: Response) {
         [Modello],
         function(err, results, fields) {
             const result = (results as any)[0]
+            if(!result) {
+                res.status(400).send("Errore")
+                return
+            }
             connection.execute(
                 "UPDATE LAC SET Modello = ?, Brand = ?, Prezzo = ?, Durata = ?, Fascia = ?, Focale = ? WHERE Modello = ?",
                 [

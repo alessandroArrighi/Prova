@@ -15,7 +15,10 @@ export default defineComponent({
         mostra2: false,
         mostra3: false,
         mostra4: false,
-        mostra5: false
+        mostra5: false,
+        errorMon: "",
+        errorLAC: "",
+        errorDel: ""
         }
     },
     methods: {
@@ -23,63 +26,80 @@ export default defineComponent({
             await axios.post("/api/prodotti/aggiungi/montature", {
                 dati: this.nuovaMontatura
             });
-            this.nuovaMontatura.Modello = "";
-            this.nuovaMontatura.Brand = "";
-            this.nuovaMontatura.Prezzo = 0;
-            this.nuovaMontatura.Versione = "";
-            this.nuovaMontatura.Calibro = "";
-            this.nuovaMontatura.Ponte = "";
-            this.nuovaMontatura.Aste = "";
-            this.nuovaMontatura.Materiale = "";
-            this.nuovaMontatura.Colore = "";
-            this.nuovaMontatura.Immagine = "";
+            this.initMontatura(this.nuovaMontatura)
         },
         async addLAC() {
             await axios.post("/api/prodotti/aggiungi/lac", {
                 dati: this.nuovaLAC
             });
-            this.nuovaLAC.Modello = "";
-            this.nuovaLAC.Brand = "";
-            this.nuovaLAC.Prezzo = 0;
-            this.nuovaLAC.Durata = "";
-            this.nuovaLAC.Fascia = "";
-            this.nuovaLAC.Focale = "";
+            this.initLAC(this.nuovaLAC)
         },
         async modifyMontatura() {
-            await axios.post("/api/prodotti/modifica/montature", {
-                dati: this.modificaMontatura
-            });
-            this.modificaMontatura.Modello = "";
-            this.modificaMontatura.Brand = "";
-            this.modificaMontatura.Prezzo = 0;
-            this.modificaMontatura.Versione = "";
-            this.modificaMontatura.Calibro = "";
-            this.modificaMontatura.Ponte = "";
-            this.modificaMontatura.Aste = "";
-            this.modificaMontatura.Materiale = "";
-            this.modificaMontatura.Colore = "";
-            this.modificaMontatura.Immagine = "";
-            this.modificaMontatura.NewModello = "";
+            try {
+                const response = await axios.post("/api/prodotti/modifica/montature", {
+                    dati: this.modificaMontatura
+                });
+                if (response.status === 200) {
+                    this.initMontatura(this.modificaMontatura)
+                    this.errorMon = ""
+                }
+            } catch (error) {
+                this.errorMon = "Modello Montatura non esistente, impossibile modificare."
+            }
+
         },
         async modifyLAC() {
-            await axios.post("/api/prodotti/modifica/lac", {
-                dati: this.modificaLAC
-            });
-            this.modificaLAC.Modello = "";
-            this.modificaLAC.Brand = "";
-            this.modificaLAC.Prezzo = 0;
-            this.modificaLAC.Durata = "";
-            this.modificaLAC.Fascia = "";
-            this.modificaLAC.Focale = "";
-            this.modificaLAC.NewModello = "";
+            try {
+                const response = await axios.post("/api/prodotti/modifica/lac", {
+                    dati: this.modificaLAC
+                });
+                if (response.status === 200) {
+                    this.initLAC(this.modificaLAC)
+                    this.errorLAC = ""
+                }
+            } catch (error) {
+                this.errorLAC = "Modello LAC non esistente, impossibile modificare."
+            }
         }, 
         async deleteProduct() {
-            await axios.post("/api/prodotti/elimina", {
+            try {
+                const response = await axios.post("/api/prodotti/elimina", {
                 dati: this.eliminaItem
-            });
-            this.eliminaItem.Modello = "";
-            this.eliminaItem.Categoria = "";
+                });
+                if (response.status === 200) {
+                    this.eliminaItem.Modello = "";
+                    this.eliminaItem.Categoria = "";
+                }   
+            } catch (error) {
+                this.errorDel = "Modello proddot non esistente, impossibile eliminare prodotto."
+            }
+        },
+        async initMontatura(Montatura: Montatura) {
+            Montatura.Modello = "";
+            Montatura.Brand = "";
+            Montatura.Prezzo = 0;
+            Montatura.Versione = "";
+            Montatura.Calibro = "";
+            Montatura.Ponte = "";
+            Montatura.Aste = "";
+            Montatura.Materiale = "";
+            Montatura.Colore = "";
+            Montatura.Immagine = "";  
+        },
+        async initLAC (LAC: LAC) {
+            LAC.Modello = "";
+            LAC.Brand = "";
+            LAC.Prezzo = 0;
+            LAC.Durata = "";
+            LAC.Fascia = "";
+            LAC.Focale = "";
         }
+    },
+    mounted() {
+        this.initMontatura(this.nuovaMontatura)
+        this.initLAC(this.nuovaLAC)
+        this.initMontatura(this.modificaMontatura)
+        this.initLAC(this.modificaLAC)
     }
 })
 
@@ -149,6 +169,7 @@ export default defineComponent({
 
         <form @submit.prevent="modifyMontatura" class="flex-item-opProd">
             <h4>Modifica una Montatura</h4>
+            <p v-if="errorMon"> {{ errorMon }}</p>
             <div v-if="mostra3" class="flex-container">
                 <div class="flex-item">
                     <label >Modello</label>
@@ -185,6 +206,7 @@ export default defineComponent({
 
         <form @submit.prevent="modifyLAC" class="flex-item-opProd">
             <h4>Modifica una LAC</h4>
+            <p v-if="errorLAC"> {{ errorLAC }}</p>
             <div v-if="mostra4" class="flex-container">
                 <div class="flex-item">
                     <label >Modello</label>
@@ -213,6 +235,7 @@ export default defineComponent({
 
         <form @submit.prevent="deleteProduct" class="flex-item-opProd">
             <h4>Elimina un Prodotto</h4>
+            <p v-if="errorDel"> {{ errorDel }}</p>
             <div v-if="mostra5" class="flex-container">
                 <div class="flex-item">
                     <label>Modello da eliminare</label>

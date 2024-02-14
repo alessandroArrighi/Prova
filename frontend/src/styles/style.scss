@@ -47,6 +47,11 @@ a {
   color: white !important;
 }
 
+.error {
+  color: red;
+  font-size: large;
+}
+
 button {
   @include pill;
 }
@@ -345,6 +350,12 @@ button {
     h4 {
       width: 100%;
       margin-left: 0px;
+    }
+
+    p {
+      color: red;
+      font-size: large;
+      text-align: center;
     }
     
     button {

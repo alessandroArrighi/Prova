@@ -70,7 +70,7 @@ export default defineComponent({
                 <label>Password</label>
                 <input v-model="passwordDaRegistrare" type="password" />
                 <button type="submit">Registrati</button>
-                <p v-if="signupError" class="error-message">{{ signupError }}</p>
+                <p v-if="signupError" class="error">{{ signupError }}</p>
             </form>
         </div>
         <div class="flex-item">
@@ -81,7 +81,7 @@ export default defineComponent({
                 <label>Password</label>
                 <input v-model="passwordEsistente" type="password" />
                 <button type="submit">Accedi</button>
-                <p v-if="loginError" class="error-message">{{ loginError }}</p>
+                <p v-if="loginError" class="error">{{ loginError }}</p>
             </form>
         </div>
     </div>
