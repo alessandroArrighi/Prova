@@ -10,6 +10,10 @@ export async function ordersFromID(req: Request, res: Response) {
         [req.body.id],
         async function(err, results, fields) {
             const result = results as any
+            if(result.length == 0) {
+                res.status(400).send('Errore')
+                return
+            }
             const ordine = []
 
             for(let i = 0; i < result.length; ++i) {
