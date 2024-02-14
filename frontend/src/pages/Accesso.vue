@@ -12,6 +12,7 @@ export default defineComponent({
         usernameEsistente: "",
         passwordEsistente: "",
         signupError: "",
+        loginError: "",
         }
     },
     props: {
@@ -19,22 +20,31 @@ export default defineComponent({
     },
     methods: {
         async signup() {
-            await axios.post("/api/auth/signin", {
-                username: this.usernameDaRegistrare,
-                password: this.passwordDaRegistrare,
-                role: this.ruoloDaRegistrare
-            })
-            .catch((error) => {
-                this.signupError = error.response.data.message || "Errore durante la registrazione. Controlla le credenziali e riprova.";
-            });
-            //window.location.href ="/"
+            try {
+                const response = await axios.post("/api/auth/signin", {
+                    username: this.usernameDaRegistrare,
+                    password: this.passwordDaRegistrare,
+                    role: this.ruoloDaRegistrare
+                });
+                if (response.status === 200) {
+                    window.location.href = "/accesso/areaPersonale";
+                }
+            } catch (error) {
+                this.signupError = "Errore durante la registrazione. Username già esistente.";
+            }
         },
         async login() {
-            await axios.post("/api/auth/login", {
-                username: this.usernameEsistente,
-                password: this.passwordEsistente
-            })
-            window.location.href ="/accesso/areaPersonale"
+            try {
+                const response = await axios.post("/api/auth/login", {
+                    username: this.usernameEsistente,
+                    password: this.passwordEsistente
+                });
+                if (response.status === 200) {
+                    window.location.href = "/accesso/areaPersonale";
+                }
+            } catch (error) {
+                this.loginError = "Credenziali non valide. Controlla di aver inserito correttamente username e password.";
+            }
         }
     },
     mounted() {
@@ -71,6 +81,7 @@ export default defineComponent({
                 <label>Password</label>
                 <input v-model="passwordEsistente" type="password" />
                 <button type="submit">Accedi</button>
+                <p v-if="loginError" class="error-message">{{ loginError }}</p>
             </form>
         </div>
     </div>
