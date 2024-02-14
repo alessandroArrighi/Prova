@@ -86,9 +86,9 @@ export default defineComponent({
             <h4>Modifica Password</h4>
             <form @submit.prevent="modifyPassword">
                 <label>Inserire la vecchia password</label>
-                <input v-model="oldPassword" type="text"/>
+                <input v-model="oldPassword" type="password"/>
                 <label>Inserire la nuova password</label>
-                <input v-model="newPassword" type="text"/>
+                <input v-model="newPassword" type="password"/>
                 <button type="submit">Cambia Password</button>
                 <p v-if = "pwdError" class = "error">{{ pwdError }}</p>
             </form>
