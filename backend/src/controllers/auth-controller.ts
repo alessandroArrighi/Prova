@@ -101,7 +101,7 @@ export async function modifyPassword(req: Request, res: Response) {
         async function(err, results, fields) {
             const result = (results as any)[0]
 
-            if(!bcrypt.compare(oldPassword, result['Password'])) {
+            if(!await bcrypt.compare(oldPassword, result['Password'])) {
                 res.status(400).send("Credenziali errate")
                 return
             }

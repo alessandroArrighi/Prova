@@ -9,7 +9,8 @@ export default defineComponent({
             datiUtente: {} as Utente,
             nuoviDati: {} as Utente,
             oldPassword: "",
-            newPassword: ""
+            newPassword: "",
+            pwdError: ""
         }
     },
     props: {
@@ -17,11 +18,16 @@ export default defineComponent({
     },
     methods: {
         async modifyPassword() {
-            await axios.post("/api/auth/mod/password", {
-                oldPassword: this.oldPassword,
-                newPassword: this.newPassword
-            })
-            window.location.reload()
+            try { 
+                await axios.post("/api/auth/mod/password", {
+                    oldPassword: this.oldPassword,
+                    newPassword: this.newPassword
+                })
+                window.location.reload()
+            } catch(e) {
+                this.pwdError = "Passowrd errata! Inserire la password corretta"
+            }
+            
         },
         async getUtente(){
             const res = await axios.get("/api/utenze")
@@ -84,6 +90,7 @@ export default defineComponent({
                 <label>Inserire la nuova password</label>
                 <input v-model="newPassword" type="text"/>
                 <button type="submit">Cambia Password</button>
+                <p v-if = "pwdError" class = "error">{{ pwdError }}</p>
             </form>
         </div>
     </div>

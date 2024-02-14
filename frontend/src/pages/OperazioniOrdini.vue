@@ -10,16 +10,24 @@ export default defineComponent({
     data() {
         return{
             idRicerca: "",
-            datiOrdine: [] as any[]
+            datiOrdine: [] as any[],
+            error: ""
         }
     },
     methods: {
         async getOrderFromID() {
-            const res = await axios.post("/api/ordini/idordine", {
-                id: this.idRicerca,
-            })
-            this.datiOrdine = res.data
-            this.idRicerca= ""
+            try {
+                this.datiOrdine = []
+                const res = await axios.post("/api/ordini/idordine", {
+                    id: this.idRicerca,
+                })
+                this.datiOrdine = res.data
+                this.idRicerca= ""
+            } catch(e) {
+                this.error = "Ordine non esistente! Inserire un ID Ordine corretto"
+                console.log(this.error)
+            }
+            
         },
         async getOrderIniziale() {
             const res = await axios.post("/api/ordini/getordine", {
@@ -47,6 +55,7 @@ export default defineComponent({
             <label>ID Ordine</label>
             <input v-model="idRicerca" type="text" />
             <button type="submit">Cerca</button>
+            <p v-if = "error" class = "error">{{ error }}</p>
         </form>
     </div>
 
