@@ -53,7 +53,7 @@ export default defineComponent({
     <div class="flex-container-prodotti">
         <div v-for="articolo in datiOrdine" class="flex-item">
             <router-link :to="getRouterLink(articolo)">
-                <img loading="lazy" :src="'/img/' + articolo.Immagine" alt="/">
+                <img loading="lazy" :src="'/' + articolo.Immagine" alt="/">
                 <p>{{ articolo.Modello }}</p>
                 <p>{{ articolo.Brand }}</p>
                 <p>{{ articolo.Prezzo }}</p>

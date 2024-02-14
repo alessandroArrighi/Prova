@@ -11,6 +11,7 @@ export default defineComponent({
         ruoloDaRegistrare: "",
         usernameEsistente: "",
         passwordEsistente: "",
+        signupError: "",
         }
     },
     props: {
@@ -23,7 +24,10 @@ export default defineComponent({
                 password: this.passwordDaRegistrare,
                 role: this.ruoloDaRegistrare
             })
-            window.location.href ="/accesso/areaPersonale"
+            .catch((error) => {
+                this.signupError = error.response.data.message || "Errore durante la registrazione. Controlla le credenziali e riprova.";
+            });
+            //window.location.href ="/"
         },
         async login() {
             await axios.post("/api/auth/login", {
@@ -56,6 +60,7 @@ export default defineComponent({
                 <label>Password</label>
                 <input v-model="passwordDaRegistrare" type="password" />
                 <button type="submit">Registrati</button>
+                <p v-if="signupError" class="error-message">{{ signupError }}</p>
             </form>
         </div>
         <div class="flex-item">

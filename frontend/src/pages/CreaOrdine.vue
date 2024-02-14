@@ -81,7 +81,7 @@ export default defineComponent({
 
                           <div class="flex-item-1">
                               <div>
-                                <img :src="'/img/' + prodotto.Immagine" class="img-fluid rounded-3" alt="Shopping item" >
+                                <img :src="'/' + prodotto.Immagine" class="img-fluid rounded-3" alt="Shopping item" >
                               </div>
                             <RouterLink :to="'/prodotti/' + prodotto.Categoria + '-' + prodotto.IDProdotto">
                                 <h5>{{ prodotto.IDProdotto }}</h5>

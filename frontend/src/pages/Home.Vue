@@ -14,8 +14,8 @@ export default defineComponent({
     return {
       slide: 0,
       itemsToShow: 3.95,
-      prodotti: [{img: '/img/1.avif', testo: 'Occhiali da Vista', categoria: 'MontatureV'}, {img: '/img/2.avif', testo: 'Occhiali da Sole', categoria: 'MontatureS'}, {img: '/img/4.avif', testo: 'Lenti a Contatto', categoria: 'LACC'}],
-      vetrina: [{img: '/img/8.avif', modello: 'CCC07', categoria: 'Montature', testo: 'Occhiali in Saldo!'}, {img: '/img/4.avif', modello: 'CCC03', categoria: 'Montature', testo: 'Occhiali da sole -50%'}, {img: '/img/6.avif', modello: 'CCC05', categoria: 'Montature', testo: 'Occhiali in Saldo!'}, {img: '/img/a.avif', modello: 'AAA02', categoria: 'LAC', testo: 'Lenti a Contatto in Sconto!'}, {img: '/img/2.avif', modello: 'CCC03', categoria: 'Montature', testo: 'Occhiali in Saldo!'}]
+      prodotti: [{img: '/1.avif', testo: 'Occhiali da Vista', categoria: 'MontatureV'}, {img: '/2.avif', testo: 'Occhiali da Sole', categoria: 'MontatureS'}, {img: '/4.avif', testo: 'Lenti a Contatto', categoria: 'LACC'}],
+      vetrina: [{img: '/8.avif', modello: 'CCC07', categoria: 'Montature', testo: 'Occhiali in Saldo!'}, {img: '/4.avif', modello: 'CCC03', categoria: 'Montature', testo: 'Occhiali da sole -50%'}, {img: '/6.avif', modello: 'CCC05', categoria: 'Montature', testo: 'Occhiali in Saldo!'}, {img: '/a.avif', modello: 'AAA02', categoria: 'LAC', testo: 'Lenti a Contatto in Sconto!'}, {img: '/2.avif', modello: 'CCC03', categoria: 'Montature', testo: 'Occhiali in Saldo!'}]
     }
   },
   methods: {
