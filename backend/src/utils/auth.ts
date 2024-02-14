@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 interface user {
     IDUtente: number
     User: string
-    Role: "admin" | "user"         //la mia modifica per controllare che si sia fatto accesso come admin o come user
+    Role: "admin" | "user"
 }
 
 const JWT_SECRET = "foo"
