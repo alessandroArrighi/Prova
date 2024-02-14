@@ -19,15 +19,20 @@ export default defineComponent({
         errorAddLAC: "",
         errorMon: "",
         errorLAC: "",
-        errorDel: ""
+        errorDel: "",
+        errorAddMon: ""
         }
     },
     methods: {
         async addMontatura() {
-            await axios.post("/api/prodotti/aggiungi/montature", {
-                dati: this.nuovaMontatura
-            });
-            this.initMontatura(this.nuovaMontatura)
+            try {
+                await axios.post("/api/prodotti/aggiungi/montature", {
+                    dati: this.nuovaMontatura
+                });
+                this.initMontatura(this.nuovaMontatura)
+            } catch(e) {
+                this.errorAddMon = "Modello non inserito! Inserire correttamente il Modello"
+            }
         },
         async addLAC() {
             try {
@@ -130,6 +135,7 @@ export default defineComponent({
     <div class="flex-container-opProd">
         <form @submit.prevent="addMontatura" class="flex-item-opProd">
             <h4>Inserisci una Nuova Montatura</h4>
+            <p v-if = "errorAddMon" class = "erorr">{{ errorAddMon }}</p>
             <div v-if="mostra1" class="flex-container">
                 <div class="flex-item">
                     <label >Modello</label>
