@@ -57,7 +57,7 @@ export default defineComponent({
 
 <template>
   <div v-if="montatura" class="flex-container-ps">
-    <img :src="'/' + montatura.Immagine" alt="/" />
+    <img :src="'/img/' + montatura.Immagine" alt="/" />
     <h2>Modello: {{montatura.Modello}}</h2>
     <div class="flex-item">
       <p>Brand: {{ montatura.Brand }}</p>
@@ -82,7 +82,7 @@ export default defineComponent({
     </form>
   </div>
   <div v-if="lac" class="flex-container-ps">
-    <img :src="'/' + lac.Immagine" alt="/" />
+    <img :src="'/img/' + lac.Immagine" alt="/" />
     <h2>{{lac.Modello}}</h2>
     <div class="flex-item">
       <p>Brand: {{ lac.Brand }}</p>

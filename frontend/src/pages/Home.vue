@@ -41,7 +41,7 @@ export default defineComponent({
     <Carousel class="primary-carousel" :wrap-around="true">
       <Slide :key="slide" v-for = "prodotto in prodotti">  
         <div class="carousel__item">
-          <img :src="prodotto.img" alt="">
+          <img :src="'/img/' + prodotto.img" alt="">
           <RouterLink :to = "'/prodotti/tutti/vista/' + prodotto.categoria">{{ prodotto.testo }}</RouterLink>
           <Navigation class="custom-navigation"/>
         </div>
@@ -54,7 +54,7 @@ export default defineComponent({
       
       <Slide :key="slide" v-for = "prodotto in vetrina">
         <div class="carousel__item">
-          <img :src="prodotto.img">
+          <img :src="'/img/' + prodotto.img">
           <RouterLink :to = "'/prodotti/' + prodotto.categoria + '-' + prodotto.modello">{{ prodotto.testo }}</RouterLink>
         </div>
       </Slide>

@@ -16,6 +16,7 @@ export default defineComponent({
         mostra3: false,
         mostra4: false,
         mostra5: false,
+        errorAddLAC: "",
         errorMon: "",
         errorLAC: "",
         errorDel: ""
@@ -29,10 +30,16 @@ export default defineComponent({
             this.initMontatura(this.nuovaMontatura)
         },
         async addLAC() {
-            await axios.post("/api/prodotti/aggiungi/lac", {
-                dati: this.nuovaLAC
-            });
-            this.initLAC(this.nuovaLAC)
+            try {
+                 const response = await axios.post("/api/prodotti/aggiungi/lac", {
+                    dati: this.nuovaLAC
+                });
+                if (response.status === 200) {
+                    this.initLAC(this.nuovaLAC)
+                }
+            } catch (error) {
+                this.errorAddLAC = "Modello non inserito! Inserire correttamente il modello."
+            }
         },
         async modifyMontatura() {
             try {
@@ -157,6 +164,7 @@ export default defineComponent({
 
         <form @submit.prevent="addLAC" class="flex-item-opProd">
             <h4>Inserisci una Nuova LAC</h4>
+            <p v-if="errorAddLAC"> {{ errorAddLAC }}</p>
             <div v-if="mostra2" class="flex-container">
                 <div class="flex-item">
                     <label >Modello</label>
